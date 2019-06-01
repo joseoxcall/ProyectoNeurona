@@ -1,4 +1,5 @@
 package neurona;
+import java.awt.Color;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 /**
@@ -17,7 +18,8 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
      */
     public neurona() {
         initComponents();
-        
+        btnprueba.setEnabled(false);
+        btnnuevo.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +40,8 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
         jScrollPane1 = new javax.swing.JScrollPane();
         Area = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
+        btnprueba = new javax.swing.JButton();
+        btnnuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +64,7 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
         txte.setNextFocusableComponent(btniniciar);
 
         btniniciar.setText("Iniciar Aprendizaje");
+        btniniciar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         btniniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btniniciarActionPerformed(evt);
@@ -78,6 +83,20 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/neurona/neurona.jpg"))); // NOI18N
 
+        btnprueba.setText("Iniciar Prueba");
+        btnprueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpruebaActionPerformed(evt);
+            }
+        });
+
+        btnnuevo.setText("Nuevo");
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,11 +104,6 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btniniciar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -108,7 +122,15 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
                         .addComponent(txty, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
-                        .addGap(52, 52, 52))))
+                        .addGap(52, 52, 52))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btniniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnprueba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +166,12 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btniniciar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btniniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnprueba, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -152,28 +179,104 @@ int[][] tabla = {{1, 1, 1}, {1, -1, 1}, {-1, 1, 1}, {-1, -1, -1}};
     }// </editor-fold>//GEN-END:initComponents
 
     private void btniniciarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btniniciarKeyPressed
-proceso();
+          int a = (txtx1.getText().length() == θ) ? 0 : 1;
+          int b = (txtx2.getText().length() == θ) ? 0 : 1;
+          int c = (txtQ.getText().length() == θ) ? 0 : 1;
+          int d = (txte.getText().length() == θ) ? 0 : 1;
+          
+        if((a==1) && (b==1) && (c==1) && (d==1) ){
+            if(Double.parseDouble(txtQ.getText())<=1  ){
+            btniniciar.setEnabled(false);
+          btnprueba.setEnabled(true); 
+            proceso();}
+            else{
+                txtQ.setText("");
+                JOptionPane.showMessageDialog(null, "Error en dato θ");}
+            
+        }else
+        {JOptionPane.showMessageDialog(null, "Datos Vacios");}
+
     }//GEN-LAST:event_btniniciarKeyPressed
 
     private void btniniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniniciarActionPerformed
- proceso();       // TODO add your handling code here:
+          int a = (txtx1.getText().length() == θ) ? 0 : 1;
+          int b = (txtx2.getText().length() == θ) ? 0 : 1;
+          int c = (txtQ.getText().length() == θ) ? 0 : 1;
+          int d = (txte.getText().length() == θ) ? 0 : 1;
+          
+        if((a==1) && (b==1) && (c==1) && (d==1) ){
+            if(Double.parseDouble(txtQ.getText())<=1  ){
+            btniniciar.setEnabled(false);
+          btnprueba.setEnabled(true); 
+            proceso();}
+            else{
+                txtQ.setText("");
+                JOptionPane.showMessageDialog(null, "Error en dato θ");}
+            
+        }else
+        {JOptionPane.showMessageDialog(null, "Datos Vacios");}
     }//GEN-LAST:event_btniniciarActionPerformed
 
+    private void btnpruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpruebaActionPerformed
+       btnprueba.setEnabled(false);
+       btnnuevo.setEnabled(true);
+prueba();
+    }//GEN-LAST:event_btnpruebaActionPerformed
+
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+       btniniciar.setEnabled(true);
+       btnprueba.setEnabled(false);
+       btnnuevo.setEnabled(false);
+       txtx1.setText("");
+       txtx2.setText("");
+       txte.setText("");
+       txtQ.setText("");
+       txty.setText("");
+       Area.setText("");
+       txtx1.setBackground(Color.white);
+       txtx2.setBackground(Color.white);
+       txtQ.setBackground(Color.white);
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
+    public void prueba(){
+    double dato1=0;
+    double dato2=0;
+    
+    dato1= Double.parseDouble(JOptionPane.showInputDialog("Ingrese Valor 1"));
+    dato2= Double.parseDouble(JOptionPane.showInputDialog("Ingrese Valor 2 "));
+            y = Math.tanh((dato1 * w1) + (dato2 * w2) + (-1 * θ));
+            y = (y >= θ) ? 1 : -1;
+            txty.setText(String.format("%.1f", y));
+            
+    }
+    
     public void proceso(){
       w1=Double.parseDouble(txtx1.getText());
         w2=Double.parseDouble(txtx2.getText());
         θ=Double.parseDouble(txtQ.getText());
         E=Double.parseDouble(txte.getText());
         
+        Area.append("Entrada: ");
+        Area.append(System.getProperty("line.separator"));
+        Area.append("w1 = " + String.format("%.1f", w1));
+                Area.append(System.getProperty("line.separator"));
+        Area.append("w2 = " + String.format("%.1f", w2));
+                Area.append(System.getProperty("line.separator"));
+        Area.append("θ = " + String.format("%.1f", θ));
+        Area.append(System.getProperty("line.separator"));
+        Area.append(System.getProperty("line.separator"));
         
         int cont = 1;
         int i=0;
+             Area.append("Aplicacion formula de propagacion");
+              Area.append(System.getProperty("line.separator"));
         
         while (i<4){
             y = Math.tanh((tabla[i][0] * w1) + (tabla[i][1] * w2) + (-1 * θ));
             y2 = (y >= θ) ? 1 : -1;
             y = (y >= θ) ? 1 : -1;
-            
+         
+
          Area.append("y = ( "+tabla[i][0] + " * " + String.format("%.1f", w1) + " ) + ( "+ tabla[i][1]+" * "+ String.format("%.1f", w2) +" ) + ( -1 * " + String.format("%.1f", θ) +" ) =  " + String.format("%.1f", y) + " >= " + String.format("%.1f", θ) + " ---> y = " + y2   );
          Area.append(System.getProperty("line.separator"));
          
@@ -182,7 +285,6 @@ proceso();
          }else{
              Area.append(System.getProperty("line.separator"));
              Area.append("El valor esperado es diferente. Reajustando peso de fila " +  (i+1)  + "....");
-             Area.append(System.getProperty("line.separator"));
              Area.append(System.getProperty("line.separator"));
              
              double pa = w1 + 2 * E * tabla[i][2] * tabla[i][0];
@@ -201,26 +303,35 @@ proceso();
              θ = θ + 2 * E * tabla[i][2] * (-1);
              Area.append("_______________________________");
              Area.append(System.getProperty("line.separator"));
+             
+             Area.append("Aplicacion formula de propagacion");
+             Area.append(System.getProperty("line.separator"));
+
             i=0;
          }
         }
         Area.append(System.getProperty("line.separator"));
+        Area.append("Fase de aprendizaje terminado con exito ");
+        Area.append(System.getProperty("line.separator"));
         Area.append("Resultado: ");
         Area.append(System.getProperty("line.separator"));
         Area.append("w1 = " + String.format("%.1f", w1));
+        txtx1.setText(String.format("%.1f", w1));
+        txtx1.setBackground(Color.green);
         Area.append(System.getProperty("line.separator"));
         Area.append("w2 = " + String.format("%.1f", w2));
+        txtx2.setText(String.format("%.1f", w2));
+        txtx2.setBackground(Color.green);
         Area.append(System.getProperty("line.separator"));
         Area.append("θ = " + String.format("%.1f", θ));
+        txtQ.setText(String.format("%.1f", θ));
+        txtQ.setBackground(Color.green);
         JOptionPane.showMessageDialog(null, "Fase de aprendizaje terminado con exito");
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new neurona().setVisible(true);
@@ -231,6 +342,8 @@ proceso();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Area;
     private javax.swing.JButton btniniciar;
+    private javax.swing.JButton btnnuevo;
+    private javax.swing.JButton btnprueba;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
